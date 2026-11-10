@@ -1,16 +1,23 @@
-# React + Vite
+# Evidencija repromaterijala
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Evidencija artikala repromaterijala i prometa zaliha (ulazi i izlazi).
 
-Currently, two official plugins are available:
+Autor: Tomislav Ferić
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Entiteti (CRUD nad oba)
 
-## React Compiler
+- **Artikl**: naziv, oznaka (šifra, jedinstvena), jedinica mjere (kom, kg, l, m, pak), minimalna zaliha, cijena po jedinici (€), rok valjanosti, aktivan (kvačica), napomena
+- **Promet zaliha**: artikl, datum, vrsta prometa (ulaz ili izlaz), količina, napomena; svaki promet pripada jednom artiklu (1 : N)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funkcije
+- Početna: broj aktivnih artikala, artikli ispod minimalne zalihe, artikli kojima rok valjanosti ističe u 14 dana, vrijednost zalihe, broj zapisa prometa ovaj mjesec i popis artikala ispod minimalne zalihe.
+- Artikli: popis, unos, izmjena i brisanje.
+- Promet zaliha: popis prometa svih artikala ili jednog artikla, unos, izmjena i brisanje.
+- Zaliha artikla je zbroj ulaza umanjen za zbroj izlaza.
+- Provjere unosa: obavezna polja, jedinstvena oznaka artikla, minimalna zaliha i cijena nisu negativne, količina prometa veća od 0, izlaz ne može biti veći od zalihe.
+- Brisanje uz potvrdu; artikl s prometom ne može se obrisati, a ulaz se ne može obrisati ako bi zaliha postala negativna.
 
-## Expanding the ESLint configuration
+Početni podaci su izmišljeni (demo). Podaci se spremaju u `localStorage`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tehnologije
+React 19, Vite
